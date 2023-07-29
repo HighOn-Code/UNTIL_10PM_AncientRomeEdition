@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown to 10 PM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #countdown {
+      font-size: 36px;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown to 10 PM</h1>
+  <div id="countdown"></div>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const targetTime = new Date();
+      targetTime.setHours(22, 0, 0, 0); // Set the target time to 10 PM
+
+      let timeDifference = targetTime - now;
+      if (timeDifference <= 0) {
+        document.getElementById("countdown").innerText = "It's 10 PM!";
+      } else {
+        const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
+        document.getElementById("countdown").innerText = `${hoursLeft} hours left until 10 PM.`;
+      }
+    }
+
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+
+    // Initial update when the page loads
+    updateCountdown();
+  </script>
+</body>
+</html>
