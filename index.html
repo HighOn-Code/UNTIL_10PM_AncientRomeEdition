@@ -12,6 +12,7 @@
      background: url(111.jpg);
      background-repeat: no-repeat;
      background-size: cover;
+     visibility: hidden; 
     }
     #countdown {
       font-size: 36px;
@@ -57,6 +58,16 @@
 
     // Initial update when the page loads
     updateCountdown();
+
+      function showPage() {
+      // This function will be called when the background image is loaded
+      document.body.style.visibility = 'visible';
+      updateCountdown(); // Update the countdown once the background image is loaded
+      setInterval(updateCountdown, 1000); // Start updating the countdown every second
+    }
+
+    // Add an event listener to the 'load' event of the window to call the showPage function
+    window.addEventListener('load', showPage);
   </script>
 
 </body>
