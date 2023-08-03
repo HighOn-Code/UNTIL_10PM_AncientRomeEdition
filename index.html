@@ -24,6 +24,48 @@
       color: lime;
       border-radius: 30px;
      }
+
+
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.task-input {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.task-input input {
+    flex: 1;
+    padding: 5px;
+}
+
+.task-input button {
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+button {
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
   </style>
 </head>
   
@@ -33,6 +75,21 @@
 </br>
   <div id="countdown"></div>
 
+
+ <Br></Br>
+ <Br></Br>
+ <Br></Br>
+   <div class="container">
+        <h1>To-Do List</h1>
+        <div class="task-input">
+            <input type="text" id="task" placeholder="Enter your task here">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+        <ul id="task-list">
+            <!-- Tasks will be added here dynamically -->
+        </ul>
+        <button onclick="deleteAll()">Delete All Tasks</button>
+    </div>
     <script>
     function updateCountdown() {
       const targetTime = new Date();
@@ -68,6 +125,28 @@
 
     // Add an event listener to the 'load' event of the window to call the showPage function
     window.addEventListener('load', showPage);
+
+     // Function to add a new task to the list
+function addTask() {
+    const taskInput = document.getElementById("task");
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
+        const taskList = document.getElementById("task-list");
+        const li = document.createElement("li");
+        li.innerText = taskText;
+        taskList.appendChild(li);
+        taskInput.value = "";
+    }
+}
+
+// Function to delete all tasks from the list
+function deleteAll() {
+    const taskList = document.getElementById("task-list");
+    while (taskList.firstChild) {
+        taskList.removeChild(taskList.firstChild);
+    }
+}
+
   </script>
 
 </body>
