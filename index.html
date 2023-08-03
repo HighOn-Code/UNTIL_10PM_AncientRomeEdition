@@ -92,6 +92,47 @@ h1 {
     cursor: pointer;
 }
 
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 16px; /* Adjust the font size for better readability on small screens */
+  }
+
+  .container {
+    max-width: 90%; /* Reduce the width of the container on small screens */
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-size: 24px; /* Adjust the heading font size on small screens */
+  }
+
+  .task-input {
+    flex-direction: column; /* Stack the input and button on top of each other on small screens */
+    align-items: center;
+  }
+
+  .task-input input {
+    width: 100%; /* Make the input field full-width on small screens */
+    margin-bottom: 10px;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    font-size: 18px; /* Adjust the task font size on small screens */
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+}
+
   </style>
 </head>
   
