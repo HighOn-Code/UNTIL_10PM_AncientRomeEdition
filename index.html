@@ -5,7 +5,6 @@
   <title>Countdown to 10 PM</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       text-align: center;
       padding: 50px;
       color: #d2bb00;
@@ -13,6 +12,9 @@
      background-repeat: no-repeat;
      background-size: cover;
      visibility: hidden; 
+    font-family: "Times New Roman", serif;
+   
+    line-height: 1.6;
     }
     #countdown {
       font-size: 36px;
@@ -26,27 +28,6 @@
      }
 
 
-
-.container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.task-input {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.task-input input {
-    flex: 1;
-    padding: 5px;
-}
-
-.task-input button {
-    padding: 5px 10px;
-    margin-left: 10px;
-}
 
 ul {
     list-style: none;
@@ -65,6 +46,47 @@ button {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #a6764f;
+    border-radius: 10px;
+    background-color: #f2e8d7;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #564138;
+    margin-bottom: 20px;
+}
+
+.task-input {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.task-input input {
+    flex: 1;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #a6764f;
+    border-radius: 5px;
+}
+
+.task-input button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #a6764f;
+    color: #f6f1e9;
+    border: none;
+    border-radius: 5px;
+   
 
   </style>
 </head>
