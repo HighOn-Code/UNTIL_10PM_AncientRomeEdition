@@ -150,17 +150,61 @@ h1 {
  <Br></Br>
  <Br></Br>
  <Br></Br>
-   <div class="container">
-        <h1>To-Do List</h1>
-        <div class="task-input">
-            <input type="text" id="task" placeholder="Enter your task here">
-            <button onclick="addTask()">Add Task</button>
-        </div>
-        <ul id="task-list">
-            <!-- Tasks will be added here dynamically -->
-        </ul>
-        <button onclick="deleteAll()">Delete All Tasks</button>
+  <div class="container">
+    <h1>To-Do List</h1>
+    <div class="task-input">
+        <input type="text" id="task" placeholder="Enter your task here">
+        <input type="time" id="task-time">
+        <button onclick="addTask()">Add Task</button>
     </div>
+    <ul id="task-list">
+        <!-- Tasks will be added here dynamically -->
+    </ul>
+    <button onclick="deleteAll()">Delete All Tasks</button>
+</div>
+
+<script>
+    function addTask() {
+        const taskInput = document.getElementById("task");
+        const taskText = taskInput.value.trim();
+        const taskTime = document.getElementById("task-time").value;
+
+        if (taskText !== "" && taskTime !== "") {
+            const taskList = document.getElementById("task-list");
+            const li = document.createElement("li");
+
+            // Create a new task item with a time frame
+            li.innerHTML = `<span>${taskText}</span> - <span>${taskTime}</span> 
+                            <button onclick="deleteTask(this)">Delete</button>`;
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+            document.getElementById("task-time").value = "";
+        }
+    }
+
+    function handleKeyDown(event) {
+        if (event.keyCode === 13) {
+            addTask();
+        }
+    }
+
+    function deleteTask(button) {
+        const taskList = document.getElementById("task-list");
+        const listItem = button.parentNode;
+        taskList.removeChild(listItem);
+    }
+
+    function deleteAll() {
+        const taskList = document.getElementById("task-list");
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild);
+        }
+    }
+</script>
+
+This modified code adds an input field for setting a specific time frame for each task and a "Delete" button next to each task to delete it individually while still keeping the "Delete All Tasks" button.
+
     <script>
     function updateCountdown() {
       const targetTime = new Date();
@@ -198,31 +242,47 @@ h1 {
     window.addEventListener('load', showPage);
 
      // Function to add a new task to the list
-function addTask() {
- 
-    const taskInput = document.getElementById("task");
-    const taskText = taskInput.value.trim();
-    if (taskText !== "") {
-        const taskList = document.getElementById("task-list");
-        const li = document.createElement("li");
-        li.innerText = taskText;
-        taskList.appendChild(li);
-        taskInput.value = "";
-    }
-}
-     function handleKeyDown(event) {
-    if (event.keyCode === 13) {
-        addTask();
-    }
-}
+ function addTask() {
+        const taskInput = document.getElementById("task");
+        const taskText = taskInput.value.trim();
+        const taskTime = document.getElementById("task-time").value;
 
-// Function to delete all tasks from the list
-function deleteAll() {
-    const taskList = document.getElementById("task-list");
-    while (taskList.firstChild) {
-        taskList.removeChild(taskList.firstChild);
+        if (taskText !== "" && taskTime !== "") {
+            const taskList = document.getElementById("task-list");
+            const li = document.createElement("li");
+
+            // Create a new task item with a time frame
+            li.innerHTML = `<span>${taskText}</span> - <span>${taskTime}</span> 
+                            <button onclick="deleteTask(this)">Delete</button>`;
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+            document.getElementById("task-time").value = "";
+        }
     }
-}
+
+    function handleKeyDown(event) {
+        if (event.keyCode === 13) {
+            addTask();
+        }
+    }
+
+    function deleteTask(button) {
+        const taskList = document.getElementById("task-list");
+        const listItem = button.parentNode;
+        taskList.removeChild(listItem);
+    }
+
+    function deleteAll() {
+        const taskList = document.getElementById("task-list");
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild);
+        }
+    }
+</script>
+
+This modified code adds an input field for setting a specific time frame for each task and a "Delete" button next to each task to delete it individually while still keeping the "Delete All Tasks" button.
+
 
   </script>
 
