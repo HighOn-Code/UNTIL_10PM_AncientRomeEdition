@@ -78,6 +78,7 @@ h1 {
     font-size: 18px;
     border: 2px solid #a6764f;
     border-radius: 5px;
+    margin-right: 20px;
 }
 
 .task-input button {
@@ -150,18 +151,21 @@ h1 {
  <Br></Br>
  <Br></Br>
  <Br></Br>
-  <div class="container">
+
+ <div class="container">
     <h1>To-Do List</h1>
     <div class="task-input">
         <input type="text" id="task" placeholder="Enter your task here">
-        <input type="time" id="task-time">
-        <button onclick="addTask()">Add Task</button>
+        <input type="time" id="task-start-time">
+        <input type="time" id="task-end-time">
+        <button  style="margin-top: 10px; margin-bottom: 10px;" onclick="addTask()">Add Task</button>
     </div>
     <ul id="task-list">
         <!-- Tasks will be added here dynamically -->
     </ul>
     <button onclick="deleteAll()">Delete All Tasks</button>
-</div>
+ </div>
+
 
 <script>
     function addTask() {
@@ -242,22 +246,24 @@ This modified code adds an input field for setting a specific time frame for eac
     window.addEventListener('load', showPage);
 
      // Function to add a new task to the list
- function addTask() {
+   function addTask() {
         const taskInput = document.getElementById("task");
         const taskText = taskInput.value.trim();
-        const taskTime = document.getElementById("task-time").value;
+        const taskStartTime = document.getElementById("task-start-time").value;
+        const taskEndTime = document.getElementById("task-end-time").value;
 
-        if (taskText !== "" && taskTime !== "") {
+        if (taskText !== "" && taskStartTime !== "" && taskEndTime !== "") {
             const taskList = document.getElementById("task-list");
             const li = document.createElement("li");
 
             // Create a new task item with a time frame
-            li.innerHTML = `<span>${taskText}</span> - <span>${taskTime}</span> 
+            li.innerHTML = `<span>${taskText}</span> - <span>${taskStartTime} to ${taskEndTime}</span> 
                             <button onclick="deleteTask(this)">Delete</button>`;
             taskList.appendChild(li);
 
             taskInput.value = "";
-            document.getElementById("task-time").value = "";
+            document.getElementById("task-start-time").value = "";
+            document.getElementById("task-end-time").value = "";
         }
     }
 
