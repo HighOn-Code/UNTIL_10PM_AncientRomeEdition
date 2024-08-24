@@ -208,31 +208,38 @@ h1 {
 
 
     function updateCountdown() {
-      const targetTime = new Date();
-      targetTime.setUTCHours(22, 0, 0); // Set the target time to 10 PM in UTC +3:30 (22 UTC)
+    // Set the target time to 10 PM UTC+3:30
+    const targetTime = new Date();
+    targetTime.setUTCHours(22, 0, 0, 0); // Target 10 PM UTC
+    targetTime.setMinutes(targetTime.getMinutes() + 210); // Add 3 hours and 30 minutes
 
-      const now = new Date();
-      const nowInUtcPlus3_30 = new Date(now.getTime() + (3 * 60 + 30) * 60 * 1000); // Convert current time to UTC +3:30
+    const now = new Date();
+    // Convert current time to UTC+3:30
+    const nowInUtcPlus3_30 = new Date(now.getTime() + (3 * 60 + 30) * 60 * 1000);
 
-      // Calculate the time remaining
-      let timeDifference = targetTime - nowInUtcPlus3_30;
-      if (timeDifference <= 0) {
+    // Calculate the time remaining
+    let timeDifference = targetTime - nowInUtcPlus3_30;
+
+    if (timeDifference <= 0) {
         document.getElementById("countdown").innerText = "It's 10 PM (UTC +3:30)!";
-      } else {
+        document.title = "It's 10 PM!";
+    } else {
         const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
         const minutesLeft = Math.floor((timeDifference / (1000 * 60)) % 60);
         const secondsLeft = Math.floor((timeDifference / 1000) % 60);
-        document.getElementById("countdown").innerText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left until 10 PM (UTC +3:30).`;
-      
-        document.title = `${hoursLeft}h ${minutesLeft}m ${secondsLeft}s until 10 PM`; // This line updates the tab title
-      }
+
+        const countdownText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left until 10 PM (UTC +3:30).`;
+
+        document.getElementById("countdown").innerText = countdownText;
+        document.title = `${hoursLeft}h ${minutesLeft}m ${secondsLeft}s until 10 PM`;
     }
+}
 
-    // Update the countdown every second
-    setInterval(updateCountdown, 1000);
+     // Update the countdown every second
+     setInterval(updateCountdown, 1000);
 
-    // Initial update when the page loads
-    updateCountdown();
+     // Initial update when the page loads
+      updateCountdown();
 
       function showPage() {
       // This function will be called when the background image is loaded
