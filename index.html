@@ -210,12 +210,14 @@ function updateCountdown() {
     // Get the current time
     const now = new Date();
     
-    // Create a Date object for today's date and set the target time to 10 PM UTC+3:30
-    const targetTime = new Date();
-    targetTime.setUTCHours(19, 0, 0, 0); // 10 PM UTC+3:30 is 7 PM UTC
-
+    // Create a Date object for the target time: 10 PM UTC+3:30
+    const targetTime = new Date(now);
+    
+    // Set target time to 10 PM UTC+3:30, which is 6:30 PM UTC
+    targetTime.setUTCHours(18, 30, 0, 0); // Set to 6:30 PM UTC
+    
     // Calculate the time remaining
-    let timeDifference = targetTime - now;
+    const timeDifference = targetTime - now;
 
     if (timeDifference <= 0) {
         document.getElementById("countdown").innerText = "It's 10 PM (UTC +3:30)!";
@@ -237,8 +239,7 @@ function updateCountdown() {
       
       // Initial update when the page loads
       updateCountdown();
-      
-       
+
       function showPage() {
       // This function will be called when the background image is loaded
       document.body.style.visibility = 'visible';
