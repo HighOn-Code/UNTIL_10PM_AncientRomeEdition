@@ -207,13 +207,14 @@ h1 {
     }
 
 
-    function updateCountdown() {
+   function updateCountdown() {
     // Set the target time to 10 PM UTC+3:30
-    const targetTime = new Date();
-    targetTime.setUTCHours(22, 0, 0, 0); // Target 10 PM UTC
-    targetTime.setMinutes(targetTime.getMinutes() + 210); // Add 3 hours and 30 minutes
-
     const now = new Date();
+    // Create a Date object for today at 10 PM UTC+3:30
+    const targetTime = new Date();
+    targetTime.setUTCHours(22, 0, 0, 0); // Set to 10 PM UTC
+    targetTime.setMinutes(targetTime.getMinutes() + 210); // Adjust to 10 PM UTC+3:30
+
     // Convert current time to UTC+3:30
     const nowInUtcPlus3_30 = new Date(now.getTime() + (3 * 60 + 30) * 60 * 1000);
 
@@ -234,13 +235,14 @@ h1 {
         document.title = `${hoursLeft}h ${minutesLeft}m ${secondsLeft}s until 10 PM`;
     }
 }
+       
+       // Update the countdown every second
+       setInterval(updateCountdown, 1000);
+       
+       // Initial update when the page loads
+       updateCountdown();
 
-     // Update the countdown every second
-     setInterval(updateCountdown, 1000);
-
-     // Initial update when the page loads
-      updateCountdown();
-
+ 
       function showPage() {
       // This function will be called when the background image is loaded
       document.body.style.visibility = 'visible';
