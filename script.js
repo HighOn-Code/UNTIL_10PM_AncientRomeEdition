@@ -70,6 +70,64 @@ function updateCountdown() {
       // Initial update when the page loads
       updateCountdown();
 
+    function updateOddDayCountdown() {
+    const now = new Date();
+    let targetTime = new Date(now);
+
+    const currentDay = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+    const currentDate = now.getDate(); // 1 through 31
+
+    // Check if today is Sunday (0), Tuesday (2), or Thursday (4) and date is odd
+    const isOddDay = currentDate % 2 === 1;
+    const isTargetDay = currentDay === 0 || currentDay === 2 || currentDay === 4;
+
+    if (isTargetDay && isOddDay) {
+        // Set the target time to 6 PM today
+        targetTime.setHours(18, 0, 0, 0);
+        if (now > targetTime) {
+            // If it's already past 6 PM, move to the next odd day
+            targetTime.setDate(now.getDate() + 2);
+        }
+    } else {
+        // Find the next odd Sunday, Tuesday, or Thursday
+        do {
+            targetTime.setDate(targetTime.getDate() + 1); // Move to the next day
+        } while (
+            !(
+                (targetTime.getDay() === 0 || targetTime.getDay() === 2 || targetTime.getDay() === 4) &&
+                targetTime.getDate() % 2 === 1
+            )
+        );
+        targetTime.setHours(18, 0, 0, 0); // Set to 6 PM on the target day
+    }
+
+    const timeDifference = targetTime - now;
+
+    if (timeDifference <= 0) {
+        document.getElementById("odd-day-countdown").innerText = "It's 6 PM!";
+    } else {
+        const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
+        const minutesLeft = Math.floor((timeDifference / (1000 * 60)) % 60);
+        const secondsLeft = Math.floor((timeDifference / 1000) % 60);
+
+        const countdownText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left until the nearest 6 PM on an odd Sunday, Tuesday, or Thursday.`;
+
+        document.getElementById("odd-day-countdown").innerText = countdownText;
+    }
+}
+    
+    // Update the countdowns every second
+    setInterval(updateCountdown, 1000);
+    setInterval(updateOddDayCountdown, 1000);
+
+    // Initial update when the page loads
+    updateCountdown();
+    updateOddDayCountdown();
+
+
+
+
+
       function showPage() {
       // This function will be called when the background image is loaded
       document.body.style.visibility = 'visible';
