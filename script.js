@@ -71,11 +71,6 @@ function updateCountdown() {
       updateCountdown();
 
 
-
-  function updateCountdown() {
-        // Existing countdown logic for 10 PM
-    }
-
     // Add the new function here
     function updateOddDayCountdown() {
         const now = new Date();
