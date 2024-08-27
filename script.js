@@ -108,7 +108,7 @@ function updateCountdown() {
             const minutesLeft = Math.floor((timeDifference / (1000 * 60)) % 60);
             const secondsLeft = Math.floor((timeDifference / 1000) % 60);
 
-            const countdownText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left until the nearest 6 PM on an odd Sunday, Tuesday, or Thursday.`;
+            const countdownText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left`;
 
             document.getElementById("odd-day-countdown").innerText = countdownText;
         }
