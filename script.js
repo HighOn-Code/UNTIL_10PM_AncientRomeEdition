@@ -71,7 +71,10 @@ function updateCountdown() {
       updateCountdown();
 
 
-    function updateOddDayCountdown() {
+
+
+
+function updateOddDayCountdown() {
     const now = new Date();
     let targetTime = new Date(now);
 
@@ -85,7 +88,7 @@ function updateCountdown() {
         // Set the target time to 6 PM today
         targetTime.setHours(18, 0, 0, 0); // Set to 6 PM today
         if (now > targetTime) {
-            // If it's already past 6 PM, move to the next valid day
+            // If it's already past 6 PM, move to the next valid odd day
             targetTime.setDate(targetTime.getDate() + 2); // Skip ahead by 2 days to the next odd day
         }
     } else {
@@ -117,6 +120,9 @@ setInterval(updateOddDayCountdown, 1000);
 
 // Initial update when the page loads
 updateOddDayCountdown();
+
+
+
 
 
 
