@@ -71,57 +71,52 @@ function updateCountdown() {
       updateCountdown();
 
 
-    // Add the new function here
     function updateOddDayCountdown() {
-        const now = new Date();
-        let targetTime = new Date(now);
+    const now = new Date();
+    let targetTime = new Date(now);
 
-        const currentDay = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
-        const currentDate = now.getDate(); // 1 through 31
+    const currentDay = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+    const currentDate = now.getDate(); // 1 through 31
 
-        const isOddDay = currentDate % 2 === 1;
-        const isTargetDay = currentDay === 0 || currentDay === 2 || currentDay === 4;
+    const isOddDay = (currentDay === 0 || currentDay === 2 || currentDay === 4); // Sunday (0), Tuesday (2), Thursday (4) are odd days
 
-        if (isTargetDay && isOddDay) {
-            targetTime.setHours(18, 0, 0, 0);
-            if (now > targetTime) {
-                targetTime.setDate(now.getDate() + 2);
-            }
-        } else {
-            do {
-                targetTime.setDate(targetTime.getDate() + 1);
-            } while (
-                !(
-                    (targetTime.getDay() === 0 || targetTime.getDay() === 2 || targetTime.getDay() === 4) &&
-                    targetTime.getDate() % 2 === 1
-                )
-            );
-            targetTime.setHours(18, 0, 0, 0);
+    // If today is an odd Sunday, Tuesday, or Thursday
+    if (isOddDay) {
+        // Set the target time to 6 PM today
+        targetTime.setHours(18, 0, 0, 0); // Set to 6 PM today
+        if (now > targetTime) {
+            // If it's already past 6 PM, move to the next valid day
+            targetTime.setDate(targetTime.getDate() + 2); // Skip ahead by 2 days to the next odd day
         }
-
-        const timeDifference = targetTime - now;
-
-        if (timeDifference <= 0) {
-            document.getElementById("odd-day-countdown").innerText = "It's 6 PM!";
-        } else {
-            const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
-            const minutesLeft = Math.floor((timeDifference / (1000 * 60)) % 60);
-            const secondsLeft = Math.floor((timeDifference / 1000) % 60);
-
-            const countdownText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left`;
-
-            document.getElementById("odd-day-countdown").innerText = countdownText;
-        }
+    } else {
+        // Find the next Sunday, Tuesday, or Thursday
+        do {
+            targetTime.setDate(targetTime.getDate() + 1); // Move to the next day
+        } while (!(targetTime.getDay() === 0 || targetTime.getDay() === 2 || targetTime.getDay() === 4));
+        
+        targetTime.setHours(18, 0, 0, 0); // Set to 6 PM on the target day
     }
-    
-    // Update the countdowns every second
 
-    setInterval(updateOddDayCountdown, 1000);
+    const timeDifference = targetTime - now;
 
-    // Initial update when the page loads
+    if (timeDifference <= 0) {
+        document.getElementById("odd-day-countdown").innerText = "It's 6 PM!";
+    } else {
+        const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
+        const minutesLeft = Math.floor((timeDifference / (1000 * 60)) % 60);
+        const secondsLeft = Math.floor((timeDifference / 1000) % 60);
 
-    updateOddDayCountdown();
+        const countdownText = `${hoursLeft} hours, ${minutesLeft} minutes, and ${secondsLeft} seconds left until the nearest 6 PM on an odd Sunday, Tuesday, or Thursday.`;
 
+        document.getElementById("odd-day-countdown").innerText = countdownText;
+    }
+}
+
+// Call the new function every second to update the countdown
+setInterval(updateOddDayCountdown, 1000);
+
+// Initial update when the page loads
+updateOddDayCountdown();
 
 
 
