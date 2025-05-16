@@ -1,4 +1,4 @@
- // ---- COUNTDOWN TO 10PM & PROGRESS BAR ----
+  // ---- COUNTDOWN TO 10PM & PROGRESS BAR ----
   function updateCountdown() {
       const now = new Date();
       const targetTime = new Date(now);
@@ -24,8 +24,8 @@
           prevTarget.setDate(targetTime.getDate() - 1);
           const totalSeconds = (targetTime - prevTarget) / 1000; // Always 24h = 86400s
           const secondsPassed = (now - prevTarget) / 1000;
-          const percentLeft = Math.max(0, Math.min(100, 100- (secondsPassed / totalSeconds) * 100));
-          document.getElementById('countdown-bar').style.width = (percentLeft) + "%";
+          const percentLeft = Math.max(0, Math.min(100, 100 - (secondsPassed / totalSeconds) * 100));
+          document.getElementById('countdown-bar').style.width = percentLeft + "%";
       }
   }
   setInterval(updateCountdown, 1000);
@@ -76,7 +76,7 @@
           prevOdd.setHours(18, 0, 0, 0);
           const totalSeconds = (targetTime - prevOdd) / 1000;
           const secondsPassed = (now - prevOdd) / 1000;
-          const percentLeft = Math.max(0, Math.min(100, 100- (secondsPassed / totalSeconds) * 100));
+          const percentLeft = Math.max(0, Math.min(100, 100 - (secondsPassed / totalSeconds) * 100));
           document.getElementById('odd-day-bar').style.width = percentLeft + "%";
       }
   }
