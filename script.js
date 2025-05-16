@@ -24,7 +24,7 @@
           prevTarget.setDate(targetTime.getDate() - 1);
           const totalSeconds = (targetTime - prevTarget) / 1000; // Always 24h = 86400s
           const secondsPassed = (now - prevTarget) / 1000;
-          const percentLeft = Math.max(0, Math.min(100, secondsPassed / totalSeconds) * 100));
+          const percentLeft = Math.max(0, Math.min(100, (secondsPassed / totalSeconds) * 100));
           document.getElementById('countdown-bar').style.width = (percentLeft) + "%";
       }
   }
